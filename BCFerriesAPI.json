@@ -19,36 +19,36 @@
       "type": "object",
       "properties": {
         "BOW": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "DUK": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "FUL": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "HSB": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "LNG": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "NAN": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "SWB": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "TSA": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         },
         "SGI": {
-          "$ref": "#/definitions/departurePort"
+          "$ref": "#/definitions/departureTerminal"
         }
       },
       "title": "Schedule"
     },
-    "departurePort": {
+    "departureTerminal": {
       "type": "object",
       "properties": {
         "BOW": {
@@ -79,7 +79,7 @@
           "$ref": "#/definitions/Route"
         }
       },
-      "title": "departurePort"
+      "title": "departureTerminal"
     },
     "Route": {
       "type": "object",

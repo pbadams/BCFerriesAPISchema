@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "sailingDuration": {
+      "type": "string"
+    },
+    "sailings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "time": {
+            "type": "string"
+          },
+          "arrivalTime": {
+            "type": "string"
+          },
+          "isCancelled": {
+            "type": "boolean"
+          },
+          "fill": {
+            "type": "integer"
+          },
+          "carFill": {
+            "type": "integer"
+          },
+          "oversizeFill": {
+            "type": "integer"
+          },
+          "vesselName": {
+            "type": "string"
+          },
+          "vesselStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "time",
+          "isCancelled",
+          "fill",
+          "carFill",
+          "oversizeFill",
+          "vesselName",
+          "vesselStatus"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["sailingDuration", "sailings"],
+  "additionalProperties": false
+}

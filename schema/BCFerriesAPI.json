@@ -9,7 +9,7 @@
           "$ref": "#/definitions/Schedule"
         },
         "scrapedAt": {
-          "type": "string"
+          "type": "date"
         }
       },
       "required": ["schedule", "scrapedAt"],

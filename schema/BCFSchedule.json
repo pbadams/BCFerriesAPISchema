@@ -9,7 +9,8 @@
           "$ref": "#/definitions/Schedule"
         },
         "scrapedAt": {
-          "type": "date"
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": ["schedule", "scrapedAt"],
@@ -88,7 +89,46 @@
           "type": "string"
         },
         "sailings": {
-          "$ref": "#/definitions/Sailings"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "string"
+              },
+              "arrivalTime": {
+                "type": "string"
+              },
+              "isCancelled": {
+                "type": "boolean"
+              },
+              "fill": {
+                "type": "integer"
+              },
+              "carFill": {
+                "type": "integer"
+              },
+              "oversizeFill": {
+                "type": "integer"
+              },
+              "vesselName": {
+                "type": "string"
+              },
+              "vesselStatus": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "time",
+              "isCancelled",
+              "fill",
+              "carFill",
+              "oversizeFill",
+              "vesselName",
+              "vesselStatus"
+            ],
+            "title": "Sailing"
+          }
         }
       },
       "required": ["sailingDuration", "sailings"],

@@ -11,10 +11,12 @@
         "type": "object",
         "properties": {
           "time": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(?:([1-9]|1[0-2]):[0-5][0-9]\\s(?:[AaPp][Mm]))?$"
           },
           "arrivalTime": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(?:([1-9]|1[0-2]):[0-5][0-9]\\s(?:[AaPp][Mm]))?$"
           },
           "isCancelled": {
             "type": "boolean"

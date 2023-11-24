@@ -1,138 +1,72 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$ref": "#/definitions/BCFerriesAPI",
-  "definitions": {
-    "BCFerriesAPI": {
+  "type": "object",
+  "properties": {
+    "schedule": {
       "type": "object",
-      "properties": {
-        "schedule": {
-          "$ref": "#/definitions/Schedule"
-        },
-        "scrapedAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "required": ["schedule", "scrapedAt"],
-      "title": "BCFerriesAPI"
-    },
-    "Schedule": {
-      "type": "object",
-      "properties": {
-        "BOW": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "DUK": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "FUL": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "HSB": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "LNG": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "NAN": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "SWB": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "TSA": {
-          "$ref": "#/definitions/departureTerminal"
-        },
-        "SGI": {
-          "$ref": "#/definitions/departureTerminal"
-        }
-      },
-      "title": "Schedule"
-    },
-    "departureTerminal": {
-      "type": "object",
-      "properties": {
-        "BOW": {
-          "$ref": "#/definitions/Route"
-        },
-        "DUK": {
-          "$ref": "#/definitions/Route"
-        },
-        "FUL": {
-          "$ref": "#/definitions/Route"
-        },
-        "HSB": {
-          "$ref": "#/definitions/Route"
-        },
-        "LNG": {
-          "$ref": "#/definitions/Route"
-        },
-        "NAN": {
-          "$ref": "#/definitions/Route"
-        },
-        "SWB": {
-          "$ref": "#/definitions/Route"
-        },
-        "TSA": {
-          "$ref": "#/definitions/Route"
-        },
-        "SGI": {
-          "$ref": "#/definitions/Route"
-        }
-      },
-      "title": "departureTerminal"
-    },
-    "Route": {
-      "type": "object",
-      "properties": {
-        "sailingDuration": {
-          "type": "string"
-        },
-        "sailings": {
-          "type": "array",
-          "items": {
+      "patternProperties": {
+        "^(TSA|SWB|SGI|DUK|FUL|HSB|NAN|LNG|BOW)$": {
+          "type": "object",
+          "additionalProperties": {
             "type": "object",
             "properties": {
-              "time": {
+              "sailingDuration": {
                 "type": "string"
               },
-              "arrivalTime": {
-                "type": "string"
-              },
-              "isCancelled": {
-                "type": "boolean"
-              },
-              "fill": {
-                "type": "integer"
-              },
-              "carFill": {
-                "type": "integer"
-              },
-              "oversizeFill": {
-                "type": "integer"
-              },
-              "vesselName": {
-                "type": "string"
-              },
-              "vesselStatus": {
-                "type": "string"
+              "sailings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "time": {
+                      "type": "string",
+                      "pattern": "^(?:([1-9]|1[0-2]):[0-5][0-9]\\s(?:[AaPp][Mm]))?$"
+                    },
+                    "arrivalTime": {
+                      "type": "string",
+                      "pattern": "^(?:([1-9]|1[0-2]):[0-5][0-9]\\s(?:[AaPp][Mm]))?$"
+                    },
+                    "isCancelled": {
+                      "type": "boolean"
+                    },
+                    "fill": {
+                      "type": "integer"
+                    },
+                    "carFill": {
+                      "type": "integer"
+                    },
+                    "oversizeFill": {
+                      "type": "integer"
+                    },
+                    "vesselName": {
+                      "type": "string"
+                    },
+                    "vesselStatus": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "time",
+                    "arrivalTime",
+                    "isCancelled",
+                    "fill",
+                    "carFill",
+                    "oversizeFill",
+                    "vesselName",
+                    "vesselStatus"
+                  ]
+                }
               }
             },
-            "required": [
-              "time",
-              "isCancelled",
-              "fill",
-              "carFill",
-              "oversizeFill",
-              "vesselName",
-              "vesselStatus"
-            ],
-            "title": "Sailing"
+            "required": ["sailingDuration", "sailings"]
           }
         }
-      },
-      "required": ["sailingDuration", "sailings"],
-      "title": "Route"
+      }
+    },
+    "scrapedAt": {
+      "type": "string",
+      "format": "date-time"
     }
-  }
+  },
+  "required": ["schedule", "scrapedAt"]
 }

@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "BC Ferries API V2 Capacity Routes Response Schema",
+    "description": "Schema for the BC Ferries API V2 response from https://bcferriesapi.ca/v2/capacity/",
+    "type": "object",
+    "properties": {
+      "routes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "routeCode": {
+              "type": "string"
+            },
+            "fromTerminalCode": {
+              "type": "string"
+            },
+            "toTerminalCode": {
+              "type": "string"
+            },
+            "sailingDuration": {
+              "type": "string"
+            },
+            "sailings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^(1[0-2]|0?[1-9]):[0-5][0-9] (am|pm)$"
+                      }
+                    ]
+                  },
+                  "arrivalTime": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^(1[0-2]|0?[1-9]):[0-5][0-9] (am|pm)$"
+                      },
+                      {
+                        "type": "string",
+                        "enum": ["","Variable"]
+                      }
+                    ]
+                  },
+                  "sailingStatus": {
+                    "type": "string",
+                    "enum": ["future", "past", "current"]
+                  },
+                  "fill": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "carFill": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "oversizeFill": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "vesselName": {
+                    "type": "string"
+                  },
+                  "vesselStatus": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "time",
+                  "arrivalTime",
+                  "sailingStatus",
+                  "fill",
+                  "carFill",
+                  "oversizeFill",
+                  "vesselName",
+                  "vesselStatus"
+                ]
+              }
+            }
+          },
+          "required": [
+            "routeCode",
+            "fromTerminalCode",
+            "toTerminalCode",
+            "sailingDuration",
+            "sailings"
+          ]
+        }
+      }
+    },
+    "required": ["routes"]
+  }
+  

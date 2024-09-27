@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 const axios = require("axios");
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
 const fs = require("fs");
 const path = require("path");
 
-const apiEndpoint = "https://www.bcferriesapi.ca/api/";
+const apiEndpoint = "https://bcferriesapi.ca/v2/";
 
 async function validateSchema() {
   // Fetch data from the API
@@ -12,7 +14,7 @@ async function validateSchema() {
   const data = response.data;
 
   // Load schema files
-  const schemaFiles = ["BCFerriesAPI.json", "Sailings.json"];
+  const schemaFiles = ["bc-ferries-api-v2-schema.json"];
   const schemas = schemaFiles.map((file) => {
     const filePath = path.join(__dirname, "..", "schema", file);
     return JSON.parse(fs.readFileSync(filePath, "utf8"));
